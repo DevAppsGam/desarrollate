@@ -84,6 +84,14 @@ $result2 = $conexion->query($sql2);
 $sql3 = "SELECT * FROM edo_civil ORDER BY resultado";
 $result3 = $conexion->query($sql3);
 
+//consulta .ficha identidad / edo civil
+$sql8 = "SELECT * FROM genero ORDER BY resultado";
+$result8 = $conexion->query($sql8);
+
+//consulta .ficha identidad / edo civil
+$sql9 = "SELECT * FROM nacionalidad ORDER BY resultado";
+$result9 = $conexion->query($sql9);
+
 //consulta .ficha identidad / direccion
 $sql4 = "SELECT * FROM direccion ORDER BY resultado";
 $result4 = $conexion->query($sql4);
@@ -170,6 +178,30 @@ if ($result7->num_rows > 0) //si la variable tiene al menos 1 fila entonces segu
 } else {
   echo "No hubo resultados";
 }
+
+//comprobacion de resultados 8
+if ($result8->num_rows > 0) //si la variable tiene al menos 1 fila entonces seguimos con el codigo
+{
+  $combobit8 = "";
+  while ($row = $result8->fetch_array(MYSQLI_ASSOC)) {
+    $combobit8 .= " <option value='" . $row['genero'] . "'>" . $row['genero'] . "</option>"; //concatenamos el los options para luego ser insertado en el HTML
+  }
+} else {
+  echo "No hubo resultados";
+}
+
+//comprobacion de resultados 9
+if ($result9->num_rows > 0) //si la variable tiene al menos 1 fila entonces seguimos con el codigo
+{
+  $combobit9 = "";
+  while ($row = $result9->fetch_array(MYSQLI_ASSOC)) {
+    $combobit9 .= " <option value='" . $row['nacionalidad'] . "'>" . $row['nacionalidad'] . "</option>"; //concatenamos el los options para luego ser insertado en el HTML
+  }
+} else {
+  echo "No hubo resultados";
+}
+
+
 $conexion->close(); //cerramos la conexión
 ?>
 
